@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#PBS -N MPI
+#PBS -o OUT
+#PBS -q teaching
+#PBS -l nodes=1:ppn=16,walltime=00:10:00
+#PBS -m a
+
+cd $PBS_O_WORKDIR
+
+echo Running on host `hostname`
+echo Time is `date`
+echo Directory is `pwd`
+echo PBS job ID is $PBS_JOBID
+echo This jobs runs on the following machines:
+echo `cat $PBS_NODEFILE | uniq`
+echo Running MPI implementation.
+
+#! Create a machine file for MPI
+cat $PBS_NODEFILE > machine.file.$PBS_JOBID
+
+numnodes=`wc $PBS_NODEFILE | awk '{ print $1 }'`
+
+#! Run the parallel MPI executable (nodes*ppn)
+mpirun -np 16 ./mpi_d2q9-bgk input/input_128x128.params input/obstacles_128x128.dat
