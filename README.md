@@ -4,9 +4,7 @@ As part of the Advanced High Performance Computing unit at the University of Bri
 
 ## About
 
-The OpenMP, and MPI implementations are provided in the `opencl_d2q9-bgk.c`, `openmp_d2q9-bgk.c`, and `mpi_d2q9-bgk.c` files respectively. The kernels for the OpenCL implementation are provided in `kernels.cl`.
-
-## Usage
+High-performance D2Q9 Lattice Boltzmann Simulation implemented with MPI distributed memory parallelism. Achieved up to 32× speedup when scaling from 1 to 112 processes on the BCp4 cluster. Optimized Structure of Arrays (SoA) memory layout reduced cache misses and improved MPI transfer efficiency, sustaining ~191 GFLOPS/s throughput in large-scale runs. Includes roofline analysis confirming memory-bandwidth bound performance and detailed scalability benchmarks.
 
 ### OpenMP
 
